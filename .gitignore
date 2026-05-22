@@ -1,0 +1,20 @@
+# Slicer output
+*.gcode
+*.bgcode
+
+# OpenSCAD scratch
+*.deps
+*.echo
+*.csg
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Claude Code local permissions (user-specific)
+.claude/settings.local.json
