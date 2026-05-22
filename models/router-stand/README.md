@@ -5,6 +5,12 @@ Sized for **router 231 × 125 mm** and **switch 210 × 125 × 27 mm** by default
 (both adjustable at the top of `router-stand.scad`). Tolerance: **2 mm** all
 around between the printed walls and the devices.
 
+![Assembled stand with router on top and TP-Link switch underneath](photos/assembled.jpg)
+
+The two printed halves on the build plate, dovetails visible at the seams:
+
+![Two printed halves on the Bambu PEI plate](photos/printed-halves.jpg)
+
 ## Retention strategy
 
 - **Router corners** — full L-cups at all 4 corners, 10 mm tall walls, catches the corner from outside.

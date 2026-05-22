@@ -2,6 +2,8 @@
 
 Parametric 3D-printable models, written in [OpenSCAD](https://openscad.org/).
 
+![Router stand in use — router on top, switch underneath](models/router-stand/photos/assembled.jpg)
+
 ## Layout
 
 ```
@@ -10,6 +12,7 @@ models/<name>/
   <name>.scad         parametric source
   README.md           parameters, print settings
   exports/            generated STL/3MF files
+  photos/             (optional) photos of the printed/assembled part
 ```
 
 ## Models
@@ -34,5 +37,5 @@ openscad -o models/<name>/exports/<name>.stl models/<name>/<name>.scad
 Pass parameters for variants:
 
 ```bash
-openscad -D 'phone_width=80' -o exports/phone-stand-pixel.stl phone-stand.scad
+openscad -D 'output="full"' -o models/router-stand/exports/router-stand-full.stl models/router-stand/router-stand.scad
 ```
