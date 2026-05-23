@@ -2,8 +2,6 @@
 
 Parametric 3D-printable models, written in [OpenSCAD](https://openscad.org/).
 
-![Router stand in use — router on top, switch underneath](models/router-stand/photos/assembled.jpg)
-
 ## Layout
 
 ```
