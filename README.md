@@ -18,6 +18,7 @@ models/<name>/
 | Model | Description |
 |---|---|
 | [router-stand](models/router-stand/) | Connected frame to lift a router and stash a switch underneath |
+| [cat-swing](models/cat-swing/)       | Chibi cat sitting on a swing seat — string through the holes, hang from anything |
 
 ## Conventions
 
