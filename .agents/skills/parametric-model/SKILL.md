@@ -18,6 +18,7 @@ Don't write geometry until you know:
 - **Retention needs.** Does the device need to be "captured" so it can't slide off, or is gravity enough? "Some retention is enough" usually means short tabs, not full wraps.
 - **Print bed size.** Ask the user which 3D printer they're using if it hasn't already been established in this conversation. Then look up the printer's bed dimensions (web search the model name) so you can constrain the design's bounding box before drafting geometry.
 - **Style preferences.** Minimal frame vs. full enclosure, open-air for cooling vs. sealed.
+- **Mating object (if any).** If the part must fit an existing frame or device that has published/supplied 3D models, don't guess its geometry — **extract it from the STLs** (bounding box + slice profile), expose the fit dimensions as parameters, and have the user caliper-verify on their printed copy. See `references/fit-to-existing-part.md`.
 
 If the user sends a photo, study the shape (rounded corners, slants, vent locations, antenna positions). Photos clarify form, but you still need numeric measurements — ask for them. Don't infer dimensions from images.
 
@@ -149,6 +150,8 @@ Building blocks that show up across most stands and holders in this repo. One-li
 - **Light retention tab** — short ~20 × 2.5 × 15 mm tab on a floor rail at the device's outer-edge X. Use for "just a stop" retention when a full L-cup is overkill or won't fit. See `references/retention-tab.md`.
 - **Dovetail joint (split halves)** — trapezoidal tenon + mortise locking two halves against horizontal pull-apart. Assembly is vertical-only. Always center on rail width; 0.3 mm joint clearance for printable snug fit. See `references/dovetail-joint.md`.
 - **Auto-sized frame** — when two devices compete for the frame's dimensions, use `max(constraint_a, constraint_b)` instead of balancing by hand. See `references/auto-sized-frame.md`.
+- **Honeycomb panel** — perforated hex surface for shelf tiles, basket walls, vents: a centred hex generator clipped to leave a uniform solid border, plus the hex-symmetry rules that govern alignment across tiles (and the `use`-skips-`EPS`/`$fn` gotcha). See `references/honeycomb-panel.md`.
+- **Tiles + cross brace** — for a tray/shelf whose opening is itself ~bed-sized: split into quadrant tiles carried by a separate `+` brace that rests on the frame and bears the unsupported centre. See `references/tiles-and-brace.md`.
 
 ---
 
@@ -163,6 +166,8 @@ If the bounding box exceeds the user's printer bed in any axis, split into halve
 5. The user prints 2 identical copies, rotates one 180° about vertical, and lowers it down onto the other.
 
 Default split direction: along the **long** axis (each half has the full short dimension, half the long).
+
+**When the opening itself is ~bed-sized** (a tray/shelf that must span a gap as wide as the bed), halving doesn't help — the un-split axis still spans the full opening and still has to reach the supports (> bed). Split in **both** axes into quadrant tiles carried by a separate **cross brace** that rests on the frame and bears the unsupported centre. See `references/tiles-and-brace.md`. (Reality check: two square tiles of side `s` only share a plate if `2s ≤ bed`; state the true plate count rather than promising a combined plate the slicer will reject.)
 
 ---
 
@@ -186,3 +191,5 @@ The design must print flat on the bed with **no supports**. This is non-negotiab
 - **Don't recommend supports.** Redesign so it prints flat.
 - **Don't render and stop.** Always `Read` the PNG yourself before showing the user — you'll catch obvious bugs first.
 - **Don't redesign on terse feedback.** "Walls too tall" means tune one parameter, not rewrite the file.
+- **Don't commit third-party reference STLs.** Models you download to measure against are often licence-restricted (e.g. MakerWorld Exclusive) — gitignore them and build an original part. See `references/fit-to-existing-part.md`.
+- **Don't forget `use` skips variables.** `use <../../lib/common.scad>` imports modules/functions only — restate `EPS` and `$fn` locally or honeycomb/holes silently mis-place. See `references/honeycomb-panel.md`.
