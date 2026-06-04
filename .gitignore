@@ -18,3 +18,7 @@ Thumbs.db
 
 # Claude Code local permissions (user-specific)
 .claude/settings.local.json
+
+# Third-party reference assets — NOT ours to redistribute (MakerWorld Exclusive License)
+models/filament-rack/Modular+Shelf_stls/
+models/filament-rack/*.f3d

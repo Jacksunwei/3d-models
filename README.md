@@ -20,6 +20,7 @@ models/<name>/
 | [router-stand](models/router-stand/) | Connected frame to lift a router and stash a switch underneath |
 | [cat-swing](models/cat-swing/)       | Chibi cat sitting on a swing seat — string through the holes, hang from anything |
 | [cat-basket](models/cat-basket/)     | 10 cm open-top cube basket with a cat face on the front and ears poking up |
+| [filament-rack](models/filament-rack/) | Honeycomb shelf panel that drops onto a modular tube-frame cell (stays stackable) |
 
 ## Conventions
 
