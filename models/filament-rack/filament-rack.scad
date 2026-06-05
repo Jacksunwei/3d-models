@@ -113,9 +113,13 @@ module quadrant_tile() {
                             translate([rail_c - nm / 2, rail_c - nm / 2]) square(nm);
                         }
             }
-            // outer feet: rest on the two perimeter rails (Z 0..bear)
-            translate([half, in0, 0]) cube([rail_rest, tile_out - in0, bear]);   // on +x rail
-            translate([in0, half, 0]) cube([tile_out - in0, rail_rest, bear]);   // on +y rail
+            // outer feet: rest on the two perimeter rails (Z 0..bear). They start
+            // `bf` in from the centre so they clear the brace end-foot (which sits
+            // on the same inner-half of the rail at each rail midpoint); over that
+            // gap the tile floor rests on the brace foot instead.
+            bf = brace_w / 2 + fit_clearance;
+            translate([half, bf, 0]) cube([rail_rest, tile_out - bf, bear]);   // on +x rail
+            translate([bf, half, 0]) cube([tile_out - bf, rail_rest, bear]);   // on +y rail
             // locating stem: drops into the brace hole (prints up when floor-down)
             translate([brace_w / 2 - 3, brace_w / 2 - 3, bear - peg_h])
                 cylinder(h = peg_h, d = peg_d);
