@@ -29,7 +29,7 @@ $fn = $preview ? 32 : 64;
 
 /* [Bars — MEASURE on your rack] */
 bar_d     = 16;    // bar diameter (you measured r = 8 mm)
-bar_gap   = 262;   // INNER face to INNER face, across the two bars
+bar_gap   = 251;   // INNER face to INNER face, across the two bars
 shelf_len = 930;   // bar length to cover along the rack
 bar_clear = 0.6;   // slip gap between cradle and bar
 
@@ -38,13 +38,14 @@ tile_count = 8;    // segments along the length; 8 -> two halves fit one plate
 tile_gap   = 1.0;  // clearance between adjacent segments
 
 /* [Deck] */
-deck_th = 2;       // deck thickness (thin to save filament; honeycomb keeps it stiff)
+deck_th = 1.6;       // deck thickness (thin to save filament; honeycomb keeps it stiff)
 deck_style = "honeycomb";  // "honeycomb" | "diagonal" | "solid"
-border  = 8;       // solid border around the hex field (and around ribs/saddle)
+border  = 8;       // solid border around the hex field (perimeter)
+rib_margin = 1.5;  // small solid margin where holes meet a rib (holes sit flush to it)
 seam_gap = 0.3;    // gap between the two halves at the centre seam (clean mating)
 
 /* [Honeycomb] */
-hex_w   = 22;      // flat-to-flat width of each hex hole
+hex_w   = 26;      // flat-to-flat width of each hex hole
 hex_web = 3;       // material between adjacent hexes
 
 /* [Cradle (saddle over the bar)] */
@@ -52,8 +53,8 @@ cradle_wall = 3;   // saddle wall thickness beside the bar
 
 /* [Sticks — printed PLA bars that bridge the seam to tie the halves] */
 rod_count = 2;     // number of sticks per segment
-rod_w     = 4;     // stick width (across) — narrow so it prints/bridges easily
-rod_h     = 8;    // stick height (stands tall in the rib) — taller = stiffer
+rod_w     = 3;     // stick width (across) — narrow so it prints/bridges easily
+rod_h     = 4;    // stick height (stands tall in the rib) — taller = stiffer
 rod_reach = 70;    // how far the stick reaches into EACH half from the seam
 rod_clear = 0.4;   // slot clearance around the stick
 rib_wall  = 2;     // wall around the stick slot -> rib size
@@ -124,8 +125,8 @@ module deck_holes_plus() {
                     translate([-tile_w / 2 + border, border])
                         square([tile_w - 2 * border, y_sad_in - 2 * border]);
                     for (x = rod_xs)
-                        translate([x - rib_w / 2 - border, -1])
-                            square([rib_w + 2 * border, y_sad_in + 2]);
+                        translate([x - rib_w / 2 - rib_margin, -1])
+                            square([rib_w + 2 * rib_margin, y_sad_in + 2]);
                 }
             }
 }
@@ -150,18 +151,18 @@ module deck_plus() {
 }
 
 module rib_tubes_plus() {
-    // ribs run Y from the seam to the saddle; each carries a rectangular stick
-    // slot, open at the seam (so the stick crosses into the mate) and capped
-    // near the saddle.
+    // ONE uniform beam per rib, seam to saddle, hollow down the centre. The rod
+    // fills only the front of the void; a cap wall stops it, and the void
+    // continues empty behind the cap (the saddle caps the far end).
     difference() {
         for (x = rod_xs)
             translate([x - rib_w / 2, seam_g, deck_z0 - rib_depth])
                 cube([rib_w, y_sad_in - seam_g, rib_depth + EPS]);
         for (x = rod_xs) {
-            // stick slot: open at the seam, capped at hole_len
+            // rod slot: open at the seam, capped at hole_len
             translate([x - tube_w / 2, -1, slot_bot])
                 cube([tube_w, hole_len + 1, tube_h]);
-            // relief: hollow the rib behind the cap (empty, not solid)
+            // empty void behind the cap wall, on to the saddle
             translate([x - tube_w / 2, hole_len + cap_wall, slot_bot])
                 cube([tube_w, y_sad_in - hole_len - cap_wall, tube_h]);
         }

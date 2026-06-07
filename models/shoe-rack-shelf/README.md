@@ -2,7 +2,7 @@
 
 Replacement shelf for a tube-frame shoe rack whose woven fabric shelf tore. The
 tier has two parallel **round bars** (16 mm dia, r = 8) running its length,
-**262 mm apart** (inner face to inner face) and **930 mm long**. Printed
+**251 mm apart** (inner face to inner face) and **930 mm long**. Printed
 segments sit across both bars and tile along the length.
 
 ![assembly](exports/shoe-rack-shelf-assembly.png)
@@ -13,7 +13,7 @@ solid strips over the rod ribs, a solid border, and solid bands over the saddles
 
 ## Structure: two halves tied by two rods
 
-The 262 mm gap is wider than the 256 mm bed, so each segment is two halves. A
+The 251 mm gap is wider than the 256 mm bed, so each segment is two halves. A
 half resting on only **one** bar would pivot about it and dump the shoe through
 the gap, so the halves are tied into **one rigid plank** by **two rods
 ("sticks")**:
@@ -30,18 +30,18 @@ the gap, so the halves are tied into **one rigid plank** by **two rods
 
 ```
             shoe
-   ┌───────────────────────────────┐   honeycomb deck (2)     Z = 8 .. 10
+   ┌───────────────────────────────┐   honeycomb deck (1.6)   Z = 8 .. 9.6
  ╭─┴─╮  ══════════════════════════  ╭─┴─╮  rod in rib tube    Z ≈ 3 (in rib)
  │(O)│  rib ──────────────────────  │(O)│  ~180° cradle        Z = 0 .. 8
  ╰───╯       (rod ties both halves)  ╰───╯  bar (r=8)           bar centre Z = 0
-   bar ◄──────── 262 mm span (Y) ────────► bar
+   bar ◄──────── 251 mm span (Y) ────────► bar
         half A │ push together │ half B   (rods bridge the seam)
 ```
 
 ## Sticks (printed PLA)
 
 The sticks are printed PLA **rectangular bars** (`rod_w` × `rod_h`, default
-4 × 8 mm) — not round rods. Rectangular bars print flat as a clean wall (no
+3 × 4 mm) — not round rods. Rectangular bars print flat as a clean wall (no
 overhang) and, standing tall in the rib, resist sag far better than a round rod
 of the same footprint. The slot keys them upright. Print with `output="rod"`;
 the bar lies flat on its side on the bed.
@@ -68,10 +68,10 @@ side by side on one bed — **one plate = one complete segment** (2 tiles +
 | Walls / loops | 3 |
 | Supports | **None** — deck face-down, ribs + cradle point up (stick slot bridges ~4 mm, fine) |
 | Orientation | as exported — deck flat on the bed |
-| Per plate | `shoe-rack-shelf-plate.stl` = one segment (2 tiles + 2 sticks), ≈ 233 × 172 mm |
+| Per plate | `shoe-rack-shelf-plate.stl` = one segment (2 tiles + 2 sticks), ≈ 233 × 163 mm |
 | Pieces | **16 tiles + 16 sticks** (8 segments), all PLA |
 
-Each printed half is **115 × 150 × 14 mm** — well inside the 256 × 256 bed.
+Each printed half is **115 × 145 × 10 mm** — well inside the 256 × 256 bed.
 
 ## Assembly
 
