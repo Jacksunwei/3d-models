@@ -38,7 +38,7 @@ tile_count = 8;    // segments along the length; 8 -> two halves fit one plate
 tile_gap   = 1.0;  // clearance between adjacent segments
 
 /* [Deck] */
-deck_th = 4;       // deck thickness
+deck_th = 2;       // deck thickness (thin to save filament; honeycomb keeps it stiff)
 deck_style = "honeycomb";  // "honeycomb" | "solid"
 border  = 8;       // solid border around the hex field (and around ribs/saddle)
 seam_gap = 0.3;    // gap between the two halves at the centre seam (clean mating)

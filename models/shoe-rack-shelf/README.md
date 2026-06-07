@@ -30,7 +30,7 @@ the gap, so the halves are tied into **one rigid plank** by **two rods
 
 ```
             shoe
-   ┌───────────────────────────────┐   solid deck            Z = 8 .. 12
+   ┌───────────────────────────────┐   honeycomb deck (2)     Z = 8 .. 10
  ╭─┴─╮  ══════════════════════════  ╭─┴─╮  rod in rib tube    Z ≈ 3 (in rib)
  │(O)│  rib ──────────────────────  │(O)│  ~180° cradle        Z = 0 .. 8
  ╰───╯       (rod ties both halves)  ╰───╯  bar (r=8)           bar centre Z = 0
@@ -71,7 +71,7 @@ side by side on one bed — **one plate = one complete segment** (2 tiles +
 | Per plate | `shoe-rack-shelf-plate.stl` = one segment (2 tiles + 2 sticks), ≈ 233 × 176 mm |
 | Pieces | **16 tiles + 16 sticks** (8 segments), all PLA |
 
-Each printed half is **115 × 150 × 18 mm** — well inside the 256 × 256 bed.
+Each printed half is **115 × 150 × 16 mm** — well inside the 256 × 256 bed.
 
 ## Assembly
 
