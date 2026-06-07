@@ -39,12 +39,12 @@ tile_gap   = 1.0;  // clearance between adjacent segments
 
 /* [Deck] */
 deck_th = 2;       // deck thickness (thin to save filament; honeycomb keeps it stiff)
-deck_style = "honeycomb";  // "honeycomb" | "solid"
+deck_style = "honeycomb";  // "honeycomb" | "diagonal" | "solid"
 border  = 8;       // solid border around the hex field (and around ribs/saddle)
 seam_gap = 0.3;    // gap between the two halves at the centre seam (clean mating)
 
 /* [Honeycomb] */
-hex_w   = 16;      // flat-to-flat width of each hex hole
+hex_w   = 22;      // flat-to-flat width of each hex hole
 hex_web = 3;       // material between adjacent hexes
 
 /* [Cradle (saddle over the bar)] */
@@ -53,7 +53,7 @@ cradle_wall = 3;   // saddle wall thickness beside the bar
 /* [Sticks — printed PLA bars that bridge the seam to tie the halves] */
 rod_count = 2;     // number of sticks per segment
 rod_w     = 4;     // stick width (across) — narrow so it prints/bridges easily
-rod_h     = 10;    // stick height (stands tall in the rib) — taller = stiffer
+rod_h     = 8;    // stick height (stands tall in the rib) — taller = stiffer
 rod_reach = 70;    // how far the stick reaches into EACH half from the seam
 rod_clear = 0.4;   // slot clearance around the stick
 rib_wall  = 2;     // wall around the stick slot -> rib size
@@ -86,9 +86,9 @@ rod_len  = 2 * hole_len - 1;                    // stick bridges the seam (− s
 rod_xs = [for (i = [0 : rod_count - 1])
             -tile_w / 2 + (i + 0.5) * tile_w / rod_count];
 
-// ---------- honeycomb (centred hex field, clipped) ----------
-// Lattice anchored at the origin -> 180-symmetric, so holes line up across the
-// centre seam between a half and its 180-rotated mate.
+// ---------- deck hole patterns (centred, clipped) ----------
+// Each pattern is anchored at the origin -> 180-symmetric, so holes line up
+// across the centre seam between a half and its 180-rotated mate.
 module hex_pattern_centered(R_field) {
     hex_R = hex_w / sqrt(3);
     px = hex_w + hex_web;
@@ -102,13 +102,24 @@ module hex_pattern_centered(R_field) {
     }
 }
 
+// diagonal grid: square holes on a 45-deg-rotated lattice -> diamond holes with
+// straight 45-deg struts (fast to print).
+module diag_pattern_centered(R_field) {
+    p = hex_w + hex_web;          // pitch
+    n = ceil(R_field / p) + 3;
+    rotate([0, 0, 45])
+        for (i = [-n : n], j = [-n : n])
+            translate([i * p, j * p]) square(hex_w, center = true);
+}
+
 // Holes over the open deck only: solid border all round, solid strips over the
 // rod ribs, and solid over the saddle band (Y > y_sad_in).
-module honeycomb_holes_plus() {
+module deck_holes_plus() {
     translate([0, 0, deck_z0 - EPS])
         linear_extrude(deck_th + 2 * EPS)
             intersection() {
-                hex_pattern_centered(y_outer + hex_w);
+                if (deck_style == "diagonal") diag_pattern_centered(y_outer + hex_w);
+                else                          hex_pattern_centered(y_outer + hex_w);
                 difference() {
                     translate([-tile_w / 2 + border, border])
                         square([tile_w - 2 * border, y_sad_in - 2 * border]);
@@ -164,7 +175,7 @@ module half_tile() {
             saddle_plus();
             rib_tubes_plus();
         }
-        if (deck_style == "honeycomb") honeycomb_holes_plus();
+        if (deck_style != "solid") deck_holes_plus();
     }
 }
 

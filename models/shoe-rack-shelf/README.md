@@ -7,9 +7,9 @@ segments sit across both bars and tile along the length.
 
 ![assembly](exports/shoe-rack-shelf-assembly.png)
 
-The deck is honeycombed for the three open bays, keeping solid strips over the
-rod ribs, a solid border, and solid bands over the saddles. Set
-`deck_style = "solid"` for a closed deck.
+The deck is perforated over the three open bays (default **honeycomb**), keeping
+solid strips over the rod ribs, a solid border, and solid bands over the saddles.
+`deck_style` selects `"honeycomb"`, `"diagonal"`, or `"solid"`.
 
 ## Structure: two halves tied by two rods
 
@@ -41,7 +41,7 @@ the gap, so the halves are tied into **one rigid plank** by **two rods
 ## Sticks (printed PLA)
 
 The sticks are printed PLA **rectangular bars** (`rod_w` × `rod_h`, default
-4 × 10 mm) — not round rods. Rectangular bars print flat as a clean wall (no
+4 × 8 mm) — not round rods. Rectangular bars print flat as a clean wall (no
 overhang) and, standing tall in the rib, resist sag far better than a round rod
 of the same footprint. The slot keys them upright. Print with `output="rod"`;
 the bar lies flat on its side on the bed.
@@ -68,10 +68,10 @@ side by side on one bed — **one plate = one complete segment** (2 tiles +
 | Walls / loops | 3 |
 | Supports | **None** — deck face-down, ribs + cradle point up (stick slot bridges ~4 mm, fine) |
 | Orientation | as exported — deck flat on the bed |
-| Per plate | `shoe-rack-shelf-plate.stl` = one segment (2 tiles + 2 sticks), ≈ 233 × 176 mm |
+| Per plate | `shoe-rack-shelf-plate.stl` = one segment (2 tiles + 2 sticks), ≈ 233 × 172 mm |
 | Pieces | **16 tiles + 16 sticks** (8 segments), all PLA |
 
-Each printed half is **115 × 150 × 16 mm** — well inside the 256 × 256 bed.
+Each printed half is **115 × 150 × 14 mm** — well inside the 256 × 256 bed.
 
 ## Assembly
 
@@ -95,9 +95,9 @@ so you can see how segments butt along the bars — it's a visual aid, not a pri
 | Bars | `bar_d`, `bar_gap`, `shelf_len` | **measure these on your rack** |
 | Bars | `bar_clear` | slip gap between cradle and bar (0.6 mm) |
 | Segmentation | `tile_count`, `tile_gap` | segments along the length / clearance |
-| Deck | `deck_th`, `deck_style`, `border` | thickness, honeycomb/solid, solid border |
+| Deck | `deck_th`, `deck_style`, `border` | thickness, diagonal/honeycomb/solid, solid border |
 | Deck | `seam_gap` | gap between the two halves at the centre seam (0.3 mm) |
-| Honeycomb | `hex_w`, `hex_web` | hole size and web between holes |
+| Holes | `hex_w`, `hex_web` | hole size and web between holes (both patterns) |
 | Cradle | `cradle_wall` | saddle wall thickness beside the bar |
 | Sticks | `rod_count`, `rod_w`, `rod_h` | number of sticks, width, height (stiffness) |
 | Sticks | `rod_reach` | how far the stick reaches into each half (→ stick length) |
