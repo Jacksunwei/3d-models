@@ -55,7 +55,7 @@ cradle_wall = 3;   // saddle wall thickness beside the bar
 rod_count = 2;     // number of sticks per segment
 rod_w     = 3;     // stick width (across) — narrow so it prints/bridges easily
 rod_h     = 4;    // stick height (stands tall in the rib) — taller = stiffer
-rod_reach = 70;    // how far the stick reaches into EACH half from the seam
+rod_reach = 110;    // how far the stick reaches into EACH half from the seam
 rod_clear = 0.4;   // slot clearance around the stick
 rib_wall  = 2;     // wall around the stick slot -> rib size
 cap_wall  = 3;     // wall the stick bottoms against; rib is hollow beyond it

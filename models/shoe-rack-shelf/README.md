@@ -47,7 +47,7 @@ of the same footprint. The slot keys them upright. Print with `output="rod"`;
 the bar lies flat on its side on the bed.
 
 The stick only has to **bridge the seam** — it reaches `rod_reach` (default
-70 mm) into each half, so the default stick is **139 mm** long. The ribs stay
+110 mm) into each half, so the default stick is **219 mm** long. The ribs stay
 solid the rest of the way to the bars, so the deck is supported all the way to
 the hangers regardless of stick length.
 
